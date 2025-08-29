@@ -35,13 +35,30 @@ export default {
       prodList: [],
     };
   },
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  created() {
+    console.log("created");
+  },
+  beforeMount() {
+    console.log("beforeMount");
+  },
+  //beforeCreate, created, beforeMount 훅이라 부름
+  beforeUpdate() {
+    console.log("beforeUpdate");
+  },
+  updated() {
+    console.log("updated");
+  },
+  // beforeUpdate, updated 데이터 값이 바뀔때 실행
   mounted() {
     // DataBindingList 컴포넌트가 생성이 되면 생성, 마운트, 소멸... 주기가 있음
-    fetch("http://192.168.0.83:3000/products")
+    fetch("http://192.168.0.8:3000/products")
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        this.prodList = result;
+        this.prodList = result; // 데이터 변경.
       });
   },
 };

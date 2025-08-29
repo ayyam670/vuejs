@@ -56,6 +56,12 @@ export default {
       this.resultNum = `${this.valueText} ${this.operator} ${this.valueNum} = ${this.resultNum}`;
     },
   },
+  beforeUpdate() {
+    console.log("beforeUpdate");
+  },
+  updated() {
+    console.log("updated");
+  },
 };
 </script>
 
