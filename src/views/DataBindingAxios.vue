@@ -94,7 +94,7 @@ export default {
 table.add {
   width: 70%;
   margin: auto;
-  border: 2px solid green;
+  border-collapse: collapse;
 }
 .add th,
 .add td {
@@ -103,7 +103,7 @@ table.add {
 table.list {
   width: 100%;
   margin: auto;
-  border: 2px solid green;
+  border-collapse: collapse;
 }
 .list th,
 .list td {
