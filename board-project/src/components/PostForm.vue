@@ -25,13 +25,27 @@ export default {
       content: "",
     };
   },
+  computed: {
+    boardNo() {
+      return this.$store.getters.getBoardNo;
+    },
+    logId() {
+      return this.$store.getters.getLogId;
+    },
+  },
   methods: {
     handleSubmit() {
       let post = {
+        id: this.boardNo,
         title: this.title,
         content: this.content,
+        date: new Date().toLocaleDateString(),
+        writer: this.logId,
       };
-      this.$emit("add-post", post);
+      //this.$emit("add-post", post);
+      //this.$store.commit("addBoard", post); // mutations 에 정의된 함수
+      this.$store.dispatch("saveBoard", post); // actions 에 정의된 함수
+
       // 입력필드 초기화.
       this.title = "";
       this.content = "";

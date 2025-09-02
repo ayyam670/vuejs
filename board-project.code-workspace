@@ -5,6 +5,12 @@
     },
     {
       "path": "vue-project"
+    },
+    {
+      "path": "../node/04_mysql"
+    },
+    {
+      "path": "vue-shop"
     }
   ],
   "settings": {}

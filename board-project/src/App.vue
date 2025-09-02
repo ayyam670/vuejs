@@ -40,9 +40,15 @@ export default {
     return {
       user: { id: "", name: "" },
       //uid: ref(null), // null 대신 '' 공백도 가능 // 일반 데이터타입을 참조형식으로 바꿔주는게 ref함수
-      posts: [], // 게시글 데이터 담는 반응형(reactive) 데이터
+      //posts: [], // 게시글 데이터 담는 반응형(reactive) 데이터
       //state: {uid: "",},
     };
+  },
+  computed: {
+    // 계산된 속성.
+    posts() {
+      return this.$store.getters.getBoardList;
+    },
   },
   methods: {
     addPost(payload) {
@@ -75,6 +81,7 @@ export default {
           //this.user = { id: email, name: nickname }; // data(){return{user:'';}} 여기서 가져옴
           this.user.id = email; // 로그인 성공 시 uid 업데이트.
           this.user.name = nickname;
+          this.$store.commit("setId", email);
         },
         fail: (error) => {
           console.log(error);
@@ -84,8 +91,11 @@ export default {
   },
   provide() {
     return {
-      user: this.user, // App.vue > PostList.vue > PostItem.vue
+      user: this.user, // App.vue > PostForm > PostList.vue > PostItem.vue
     };
+  },
+  mounted() {
+    console.log(this.$store); // 컴포넌트 실행 시 데이터 한번만 가져올 수 있음
   },
 };
 </script>

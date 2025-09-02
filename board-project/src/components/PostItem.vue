@@ -1,10 +1,10 @@
 <template>
-  <div class="post-item"></div>
-  <h3>{{ post.title }}</h3>
-  <p>{{ post.content }}</p>
-  <small>작성일: {{ post.date }}</small>
-  <p>작성자아이디: {{ user.id }}</p>
-  <p>작성자: {{ user.name }}</p>
+  <div class="post-item">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.content }}</p>
+    <small>작성일: {{ post.date }}</small>
+    <p>작성자: {{ post.writer }}</p>
+  </div>
 </template>
 
 <script>
