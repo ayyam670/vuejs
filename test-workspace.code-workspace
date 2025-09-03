@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "exam/node_server"
+    },
+    {
+      "path": "exam/vue_server"
+    }
+  ],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "node_server"
+  }
+}

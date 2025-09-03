@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <script>
+      axios("http://localhost:3000/api/boardList") //
+        .then((result) => console.log(result));
+
+      axios({
+        method: "post",
+        url: "http://localhost:3000/api/comment",
+        data: { param: [{ writer: "홍길동", content: "test2", bno: 100 }] },
+      }) //
+        .then((result) => console.log(result));
+
+      // fetch("http://localhost:3000/api/comment", {
+      //   method: "post",
+      //   headers: { "content-type": "application/json;charset=utf-8" },
+      //   body: JSON.stringify({
+      //     param: [{ writer: "홍길동", content: "test2", bno: 100 }],
+      //   }),
+      // })
+      //   .then((response) => response.json())
+      //   .then((result) => {
+      //     console.log(result);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      axios("http://localhost:3000/api/commentList/100") //
+        .then((result) => console.log(result));
+    </script>
+  </body>
+</html>
