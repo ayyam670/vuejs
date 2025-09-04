@@ -4,7 +4,7 @@
       <thead>
         <tr>
           <th>번호</th>
-          <td>{{ no }}</td>
+          <td>{{ boardInfo.no }}</td>
           <th>작성일</th>
           <td>{{ boardInfo.created_date }}</td>
           <th>이름</th>
@@ -22,7 +22,13 @@
       <tbody>
         <tr>
           <th>댓글목록</th>
-          <td>{{ comment }}</td>
+          <td colspan="5">
+            <ul>
+              <li v-for="(c, i) in commentList" :key="i">
+                {{ c.writer }} : {{ c.content }}
+              </li>
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -35,36 +41,34 @@ import axios from "axios";
 export default {
   data() {
     return {
-      boardNo: null,
       boardInfo: {},
+      commentList: [],
     };
   },
-  props: ["no"],
   mounted() {
-    this.boardNo = this.$route.params.no;
-    axios //
+    // URL에 있는 no 값 가져오기
+    const no = this.$route.params.no;
 
-      .get(`http://localhost:3000/api/info/${this.boardNo}`)
+    // 게시글 상세 정보 불러오기
+    axios
+      .get(`http://localhost:3000/api/boardInfo/${no}`)
       .then((res) => {
-        this.boardInfo = res.data.board;
+        this.boardInfo = res.data[0];
       })
       .catch((err) => {
-        console.error("상세 불러오기 실패", err);
+        console.error("게시글 불러오기 실패", err);
+      });
+
+    // 댓글 목록 불러오기
+    axios
+      .get(`http://localhost:3000/api/commentList/${no}`)
+      .then((res) => {
+        this.commentList = res.data;
+      })
+      .catch((err) => {
+        console.error("댓글 불러오기 실패", err);
       });
   },
-  // created() {
-  //   this.boardNo = this.$route.query.no;
-  //   console.log(this.boardNo);
-
-  //   axios({
-  //     method: "post",
-  //     url: "/api/boardInfo",
-  //     data: { param: [this.boardNo] },
-  //   }).then((result) => {
-  //     console.log(result);
-  //     this.boardInfo = result.data[0];
-  //   });
-  // },
 };
 </script>
 
